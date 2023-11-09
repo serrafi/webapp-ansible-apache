@@ -19,8 +19,11 @@
 
   tasks:
     - name: Create Apache container
+      become: yes
       docker_container:
         name: webapp
         image: httpd
         ports:
           - "80:80"
+        volumes:
+          - /home/admin/webapp-ansible-apache/.:/home/test/
