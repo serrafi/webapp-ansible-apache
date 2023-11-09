@@ -2,10 +2,10 @@
 - name: "apache installation"
   hosts: prod
   become: true
-  vars: 
-    ansible_sudo_pass: admin
+  vars_files:
+    - files/secretes/credentials.yml
   pre_tasks:
-  - name: Install EPEL repo
+  - name: Install some packages 
     package: name='{{ item }}' state=present
     when: ansible_distribution == "CentOS"
     loop:
